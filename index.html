@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>ولنتاین ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ffb3c6, #ffe6ee);
+      min-height: 100vh;
+      font-size: 26px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      color: #b3003b;
+      margin-top: 40px;
+      font-size: 60px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .glow {
+      color: #ff0033;
+      text-shadow:
+        0 0 5px #ff4d6d,
+        0 0 10px #ff4d6d,
+        0 0 20px #ff1a4d,
+        0 0 40px #ff1a4d;
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 5px #ff4d6d; }
+      to   { text-shadow: 0 0 25px #ff1a4d; }
+    }
+
+    .page {
+      display: none;
+      margin-top: 90px;
+      animation: fadeIn 1.2s ease-in;
+    }
+    .active { display: block; }
+
+    input, button {
+      font-size: 22px;
+      padding: 14px 18px;
+      margin: 12px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    button {
+      cursor: pointer;
+      background: #ff3366;
+      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    button:hover { transform: scale(1.1); }
+
+    .heart {
+      font-size: 170px;
+      color: #ff0033;
+      cursor: pointer;
+      margin-top: 50px;
+      animation: pulse 1.4s infinite;
+    }
+
+    .yes { background:#ff3366; }
+    .no  { background:#999; position: absolute; }
+
+    p {
+      color: #7a0026;
+      line-height: 1.8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+
+    .floating-heart {
+      position: absolute;
+      color: red;
+      font-size: 30px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { bottom: -50px; opacity: 0; }
+      50% { opacity: 1; }
+      100% { bottom: 100%; opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1 class="glow">روز ولنتاین مبارک ❤️</h1>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+  <p>فقط صاحب قلب من می‌تواند وارد شود 💖</p>
+  <input type="text" id="loveName" placeholder="نام خود را وارد کنید">
+  <br>
+  <button onclick="checkName()">ورود</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+  <p>عشق من <span class="glow">لعا</span>، قلب مرا لمس کن ❤️</p>
+  <div class="heart" onclick="goNext()">❤️</div>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="page">
+  <p>آیا تا ابد مرا دوست خواهی داشت، <span class="glow">لعا</span>؟</p>
+  <button class="yes" onclick="yesAnswer()">بله</button>
+  <button class="no" id="noBtn">نه</button>
+</div>
+
+<!-- Final Surprise -->
+<div id="page4" class="page">
+  <h1 class="glow">لعا ❤️</h1>
+  <p class="glow">
+    تو قلب منی، آرامش منی، تمام دنیای منی<br><br>
+    از همین لحظه تا آخرین نفس من،<br>
+    قلبم فقط برای تو می‌تپد 💍<br><br>
+    بی‌نهایت دوستت دارم، لعا ❤️
+  </p>
+</div>
+
+<script>
+  const HER_NAME = "لعا";
+
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  function checkName() {
+    const name = document.getElementById("loveName").value.trim();
+    if (name === HER_NAME) {
+      showPage("page2");
+    } else {
+      alert("فقط صاحب قلبم می‌تواند وارد شود 😘");
+    }
+  }
+
+  function goNext() {
+    showPage("page3");
+  }
+
+  function yesAnswer() {
+    showPage("page4");
+  }
+
+  // No button runs away 😄
+  const noBtn = document.getElementById("noBtn");
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 80 + "%";
+    noBtn.style.top  = Math.random() * 80 + "%";
+  });
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(createHeart, 1200);
+</script>
+
+</body>
+</html>
